@@ -1,0 +1,77 @@
+@CHARSET "UTF-8";
+
+.add {
+	background-image: url(images/add.png) !important;
+}
+
+.remove {
+	background-image: url(images/delete.png) !important;
+}
+
+.table_remove {
+	background-image: url(images/table_delete.png) !important;
+}
+
+.refresh {
+	background-image: url(images/refresh.png) !important;
+}
+
+.accept {
+	background-image: url(images/accept.png) !important;
+}
+
+.cancel {
+	background-image: url(images/cancel.png) !important;
+}
+
+.save {
+	background-image: url(images/save.gif) !important;
+}
+
+.menus {
+	background-image: url(images/menus.gif) !important;
+}
+
+.exit {
+	background-image: url(images/cancel.png) !important;
+}
+
+.config {
+	background-image: url(images/config.png) !important;
+}
+
+.query {
+	background-image: url(images/query.gif) !important;
+}
+
+.open {
+	background-image: url(images/table.png) !important;
+}
+
+.openfile {
+	background-image: url(images/openfile.gif) !important;
+}
+
+.run {
+	background-image: url(images/run.gif) !important;
+}
+
+.runfile {
+	background-image: url(images/run_file.png) !important;
+}
+
+.copy {
+	background-image: url(images/copy.gif) !important;
+}
+
+.createtable {
+	background-image: url(images/table_add.png) !important;
+}
+
+.attribute {
+	background-image: url(images/attribute.png) !important;
+}
+
+.export {
+	background-image: url(images/export.png) !important;
+}

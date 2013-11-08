@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="initApp()">	
+	<mx:String id="keyWords" source="keyWords.xml"/>
+	<mx:TextArea id="textEditor" fontSize="12" mouseMove="getFocusText()" change="replaceKeyWord()"   width="100%" height="100%" />
+	<mx:Script>
+		<![CDATA[ 
+		    import flash.external.*;
+			private function replaceKeyWord():void{						
+			 var s:String=textEditor.text;		
+			 s=s.split("<").join("especialCharacter60");
+			 var keyStr:XML=new XML(keyWords);			 
+			 for each(var e:XML in keyStr.elements())
+			 {				 	
+			 	var reg:RegExp=new RegExp(e.@label,"gi");
+			 	s=s.replace(reg,e.@obj);			 		   	
+			 }					
+			 
+			 s="<p>"+s+"</p>"; 			
+			 s=s.replace(new RegExp("<p></p>","g"),"");
+			 s=s.split("especialCharacter60").join("&#60;");
+			 textEditor.htmlText=s;				 
+			}	
+			public function getFocusText():String{						
+			 var s:String=textEditor.text;	
+			 return s.substring(textEditor.selectionBeginIndex,textEditor.selectionEndIndex);			 
+			 }	
+			 
+			 public function getText():String{	
+			    return textEditor.text;			 
+			 }	
+			 
+			 public function setText(sql:String,type:int):void{	
+			 	if(type==0)
+			 	{
+			 	  textEditor.text=sql;	
+			 	}else if(type==1)
+			 	{
+			 	 textEditor.text=textEditor.text+"\r"+sql;
+			 	}		
+			 	 replaceKeyWord();
+			 }
+			 public function initApp():void {			 	  
+                  ExternalInterface.addCallback("getFocusText", getFocusText);	
+                  ExternalInterface.addCallback("getText", getText); 
+                  ExternalInterface.addCallback("setText", setText);                  
+             }
+             	
+						
+		]]>
+	</mx:Script>
+</mx:Application>

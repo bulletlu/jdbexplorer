@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Test Main For IE6 FIX..</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet" type="text/css"
+	href="../extjs/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css"
+	href="..dbe/common.css" />	
+<script type="text/javascript" src="../extjs/ext-base.js"></script>
+<script type="text/javascript" src="../extjs/ext-all.js"></script>
+<script type="text/javascript" src="../extjs/my-ext.js"></script>
+<script type="text/javascript" src="../dbe/dbe.js"></script>
+<script type="text/javascript" src="testMain4ie6.js"></script>
+<script type="text/javascript">
+	Ext.onReady(function() {
+		var main = new DBE.MainWindow({});
+		if(Ext.isIE6){
+			alert('ie6 fix ...');
+			main.ie6Fix();
+		}	
+	});
+</script>
+</head>
+<body>
+</body>
+</html>

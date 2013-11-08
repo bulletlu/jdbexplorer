@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Test</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet" type="text/css"
+	href="../extjs/resources/css/ext-all.css" />
+
+<script type="text/javascript" src="../extjs/swfupload.js"></script>
+
+<script type="text/javascript" src="../extjs/ext-base.js"></script>
+<script type="text/javascript" src="../extjs/ext-all.js"></script>
+<script type="text/javascript" src="../extjs/my-ext.js"></script>
+<script type="text/javascript" src="../extjs/Ext.ux.SwfUploader.js"></script>
+<script type="text/javascript">
+	Ext.onReady(function() {
+		//alert(Ext.ux.SwfUploader._MyMsg);
+		//Ext.ux.SwfUploader.upload();
+		//var progress = Ext.Msg.progress('请稍等...','文件上传中....','0/100');
+		var progress = Ext.Msg.show({
+			width :320,
+			title :'请稍等...',
+			msg:'文件<b>上传</b>中....',
+			progress:true,
+			progressText:'1/100',
+			//buttons: Ext.MessageBox.CANCEL,
+			buttons: {
+				cancel:'取消'
+			},
+			fn: function(){
+				alert('您取消了文件上传~~');
+			}
+		});
+
+		var i = 0;
+		var go = function(){
+			var value = ++i / 100;
+			progress.updateProgress(value,i + '%');
+			if(value == 1){
+				progress.updateText('文件上传完成。');
+				var fHide =  function(){progress.hide();};
+				fHide.defer(200);
+			}else{	
+				go.defer(20);
+			}	
+		}
+		go.defer(20);
+	});
+</script>
+</head>
+<body>
+<h1>Test MessageBox progress</h1>
+</body>
+</html>
