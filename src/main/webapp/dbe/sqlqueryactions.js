@@ -11,9 +11,8 @@ DBE.SQLQueryPanelActions = function(queryPanel) {
 		}
 	});
 
-		/**
+	/**
 	 * 执行SQL文件
-	 */
 	this.exec = new Ext.Action({
 		text : '执行文件',
 		iconCls : 'runfile',
@@ -32,7 +31,7 @@ DBE.SQLQueryPanelActions = function(queryPanel) {
 				});
 		}
 	});
-	
+	 */
 	
 	/**
 	 * 打开SQL文件
@@ -71,6 +70,7 @@ DBE.SQLQueryPanelActions = function(queryPanel) {
 	 * 取得相关Action对象
 	 */
 	this.getActions = (function() {
-		return [this.run, this.exec, this.open, this.save];
+		//return [this.run, this.exec, this.open, this.save];
+		return [this.run, this.save];
 	}).createDelegate(this);
 };

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Test</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet" type="text/css"
+	href="../extjs/resources/css/ext-all.css" />
+
+<script type="text/javascript" src="../swfupload/swfupload.js"></script>
+
+<script type="text/javascript" src="../extjs/ext-base.js"></script>
+<script type="text/javascript" src="../extjs/ext-all.js"></script>
+<script type="text/javascript" src="../extjs/my-ext.js"></script>
+<script type="text/javascript" src="../extjs/Ext.ux.SwfUploader.js"></script>
+<script type="text/javascript">
+	Ext.onReady(function() {
+		//alert(Ext.ux.SwfUploader);
+	});
+	
+	function uploadAllFile(){
+		Ext.ux.SwfUploader.upload({
+			upload_url:'../test/testSWFUploader.jsp', 
+			post_params :{
+				'User':'Wei王'
+			},			
+			file_types:{
+				type:'*.*',
+				desc:'所有文件'
+			},
+			upload_success_handler:function(file,data){
+				alert("[" + file.name + "]上传成功~!");
+				alert("服务器端返回数据：" + data);
+			}	
+		});
+	}
+	
+	function uploadImageFile(){
+		Ext.ux.SwfUploader.upload({
+			upload_url:'../dbeAction2/upload.do',
+			//upload_url:'../test/testSWFUploader.jsp', 
+			post_params :{
+				'User':'王Wei'
+			},
+			file_types:{
+				type:'*.jpg;*.gif;*.png;*.bmp',
+				desc:'图片文件'
+			}
+		});
+	}		
+</script>
+</head>
+<body>
+<h1>Test SwfUploader..</h1>
+<INPUT type="button" value="上传文件(*.*)" onclick="uploadAllFile();" />
+<INPUT type="button" value="上传文件(Images)" onclick="uploadImageFile();" />
+<hr />
+<div id="divLog"></div>
+</body>
+</html>

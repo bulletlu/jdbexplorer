@@ -33,16 +33,16 @@ public class OracleDBInfoService extends AbstractDBInfoService {
 		List<String> schemas = super.getSchemas();
 
 		// 过滤与用户不匹配的其它模式
-		try {
-			String user = meta.getUserName();
-			if (schemas.indexOf(user) > -1) {
-				// 仅返回与用户名称匹配的模式，其它的模式全部丢弃
-				schemas.clear();
-				schemas.add(user);
-			}
-		} catch (SQLException e) {
-			log.error("meta.getUserName出错：" + e.getMessage());
-		}
+//		try {
+//			String user = meta.getUserName();
+//			if (schemas.indexOf(user) > -1) {
+//				// 仅返回与用户名称匹配的模式，其它的模式全部丢弃
+//				schemas.clear();
+//				schemas.add(user);
+//			}
+//		} catch (SQLException e) {
+//			log.error("meta.getUserName出错：" + e.getMessage());
+//		}
 
 		return schemas;
 	}

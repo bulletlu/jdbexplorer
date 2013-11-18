@@ -12,6 +12,8 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONFunction;
 import net.sf.json.JSONObject;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
 
 import cn.com.qimingx.core.ProcessResult;
@@ -26,12 +28,14 @@ import cn.com.qimingx.json.MyJSONUtils;
  */
 @Service("sqlQueryOperator")
 public class SQLQueryOperator {
+	private static final Log log = LogFactory.getLog(SQLQueryOperator.class);
 	// 执行sql语句
 	public ProcessResult<JSON> execute(DBInfoService service,
 			GridQueryLoadBean param) {
-		String sql = param.getSql();
-		if (sql != null || sql.length() > 0) {
-			if (sql.startsWith("SELECT") || sql.startsWith("select")) {
+		String sql = param.getSql().trim();
+		
+		if (sql != null && sql.length() > 0) {
+			if (sql.toLowerCase().startsWith("select")) {
 				return executeQuery(sql, service, param);
 			} else {
 				return executeUpdate(sql, service, param);

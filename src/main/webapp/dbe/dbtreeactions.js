@@ -25,7 +25,8 @@ DBE.DBTreePanelActions = function(dbtree, tabPanel) {
 	 * 打开node 节点代表的数据库元素（例如：表、视图、存储过程等等）
 	 */
 	var funOpenDBElement = function(node, objEvent) {
-		var tabName = "tab" + node.text;
+		var schema = node.parentNode.parentNode.text;
+		var tabName = "tab" + schema + '.' + node.text;
 		var tab = tabPanel.getItem(tabName);
 		if (!tab) {
 			var type = getDBElementTypeOfNode(node);
@@ -42,7 +43,7 @@ DBE.DBTreePanelActions = function(dbtree, tabPanel) {
 						// create panel.
 						var panel = tabPanel.add({
 							id : tabName,
-							title : node.text,
+							title : schema + '.' + node.text,
 							autoScroll : true,
 							closable : true,
 							plain : true,
@@ -66,7 +67,8 @@ DBE.DBTreePanelActions = function(dbtree, tabPanel) {
 					wait.getDialog().close();
 				});
 			} else {
-				alert('未知的元素类型，，：' + type);
+				//alert('未知的元素类型，，：' + type);
+				Ext.MessageBox.alert('提示','未知的元素类型：' + type);
 			}
 		} else {
 			tabPanel.setActiveTab(tab);
@@ -232,7 +234,8 @@ DBE.DBTreePanelActions = function(dbtree, tabPanel) {
 					});
 				});
 			} else {
-				alert('未知的元素类型，，：' + type);
+				//alert('未知的元素类型，，：' + type);
+				Ext.MessageBox.alert('提示','未知的元素类型：' + type);
 			}
 		}
 	});

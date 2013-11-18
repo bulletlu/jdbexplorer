@@ -85,7 +85,7 @@ class HelperDBInfoServiceTable {
 		List<TableColumnInfo> columns = prCI.getData();
 
 		// sql 语句
-		String sql = "SELECT * FROM " + name;
+		String sql = "SELECT * FROM " + schema + "." + name;
 
 		// 读取数据
 		ProcessResult<TableInfo> prTable;
@@ -223,7 +223,7 @@ class HelperDBInfoServiceTable {
 				pr.setSuccess(true);
 				pr.setData(pkName);
 			} else {
-				pr.setMessage(name + " without PrimaryKey~!?");
+				pr.setMessage(name + " without PrimaryKey!?");
 			}
 			return pr;
 		} catch (SQLException e) {

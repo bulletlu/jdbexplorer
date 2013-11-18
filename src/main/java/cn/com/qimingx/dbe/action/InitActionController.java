@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.util.WebUtils;
 
 import cn.com.qimingx.core.ProcessResult;
+import cn.com.qimingx.dbe.AuthConfig;
 import cn.com.qimingx.dbe.DBConnectionState;
 import cn.com.qimingx.dbe.DBEConfig;
 import cn.com.qimingx.dbe.action.bean.ConnectParamBean;
@@ -97,12 +98,20 @@ public class InitActionController extends BaseMultiActionController {
 			ConnectParamBean param) {
 		log.debug("call InitAction.login,param:" + param);
 		ProcessResult<String> pr;
-		pr = DBConnectionState.connect(param, req.getSession(true));
-
+		
+		AuthConfig auth = AuthConfig.getInstance();
+		if(auth.isValid(param.getUrl(), req.getRemoteHost(), param.getUser())){
+			pr = DBConnectionState.connect(param, req.getSession(true));
+		}else{
+			pr = new ProcessResult<String>();
+			pr.setMessage(req.getRemoteHost()+"没有权限登录此数据，请联系管理员");
+		}
+		
 		JSONObject json = new JSONObject();
 		if (pr.isSuccess()) {
 			json.element("success", true);
 			storeConnectionParam(req, resp, param);
+			log.info(req.getRemoteHost()+"/"+param.getUser()+"/"+param.getUrl()+" login successfully");
 		} else {
 			json.element("success", false);
 			json.element("msg", pr.getMessage());
@@ -124,6 +133,7 @@ public class InitActionController extends BaseMultiActionController {
 
 		JSONObject json = new JSONObject();
 		json.element("success", true);
+		log.info(req.getRemoteHost()+" logout successfully");
 		sendJSON(resp, json.toString());
 	}
 

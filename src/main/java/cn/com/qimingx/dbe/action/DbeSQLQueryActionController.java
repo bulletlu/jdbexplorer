@@ -48,7 +48,7 @@ public class DbeSQLQueryActionController extends AbstractDbeActionController {
 		log.debug("param.getName():" + param.getName() + "param.getType():"
 				+ param.getType());
 		InputStream input =null;
-		Writer  writer = new StringWriter();
+		Writer writer = new StringWriter();
 		String str = null;
 		try {
 			input = param.getFile().getInputStream();
@@ -82,7 +82,7 @@ public class DbeSQLQueryActionController extends AbstractDbeActionController {
 		File file = workDirectory(req).newFile("temp.sql", null);
 		OutputStream output = null;
 		InputStream input = null;
-
+		
 		try {
 			output = new FileOutputStream(file);
 			input = param.getFile().getInputStream();
@@ -96,6 +96,7 @@ public class DbeSQLQueryActionController extends AbstractDbeActionController {
 			}else{
 				sendJSON(resp, pr.getData().toString());
 			}
+			log.info(req.getRemoteHost()+"/"+param.getType()+"/"+param.getName());
 		} catch (Exception e) {
 			log.debug("execSqlFile.error:" + e.getMessage());
 			sendErrorJSON(resp, e.getMessage());
@@ -122,7 +123,7 @@ public class DbeSQLQueryActionController extends AbstractDbeActionController {
 		//
 		DBInfoService service = prDBCS.getData().getDBInfoService();
 		ProcessResult<JSON> pr = sqlQueryOperator.execute(service, param);
-
+		log.info(req.getRemoteHost()+"/"+param.getSql());
 		// return
 		if (pr.isSuccess()) {
 			JSON json = pr.getData();

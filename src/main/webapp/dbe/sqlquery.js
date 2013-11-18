@@ -165,7 +165,8 @@ Ext.extend(DBE.SQLQueryPanel, Ext.Panel, {
 			this.grid.reload(sql);
 			this.queryGridPanel.setActiveTab(0);
 		} else {
-			alert("请输入SQL语句~~");
+			//alert("请输入SQL语句~~");
+			Ext.MessageBox.alert('提示','请输入SQL语句');
 		}
 		//alert('wait');
 		if (hasInitSQL) {

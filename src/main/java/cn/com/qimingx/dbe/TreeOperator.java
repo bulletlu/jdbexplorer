@@ -84,6 +84,7 @@ public class TreeOperator {
 	public ProcessResult<JSON> open(DBInfoService service, TreeNodeBean node) {
 		String name = node.getNodeName();
 		String type = node.getType();
+		
 		if (type.equalsIgnoreCase("table") || type.equalsIgnoreCase("view")) {
 			String schema = node.getSchema();
 			return getTableInfo(service, schema, name);
