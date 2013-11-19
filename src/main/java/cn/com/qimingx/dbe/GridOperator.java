@@ -232,7 +232,7 @@ public class GridOperator {
 				}
 				sql += field;
 			}
-			sql = "select " + sql + " from " + param.getElementName();
+			sql = "select " + sql + " from " + param.getSchema()+"."+param.getElementName();
 			// TODO:可能还要处理其它条件的问题
 			log.debug("Table Export,sql:" + sql);
 		} else {

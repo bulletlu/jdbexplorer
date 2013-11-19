@@ -19,6 +19,7 @@ import cn.com.qimingx.core.ProcessResult;
 import cn.com.qimingx.dbe.AuthConfig;
 import cn.com.qimingx.dbe.DBConnectionState;
 import cn.com.qimingx.dbe.DBEConfig;
+import cn.com.qimingx.dbe.AuditInfo;
 import cn.com.qimingx.dbe.action.bean.ConnectParamBean;
 import cn.com.qimingx.spring.BaseMultiActionController;
 
@@ -38,6 +39,8 @@ public class InitActionController extends BaseMultiActionController {
 
 	// 保存登录历史条目的最大个数
 	private static final int LOGIN_ITEM_LENGTH = 5;
+	
+	private AuditInfo audit;
 
 	// System init，检查登录状态
 	public void init(HttpServletRequest req, HttpServletResponse resp) {
@@ -100,8 +103,10 @@ public class InitActionController extends BaseMultiActionController {
 		ProcessResult<String> pr;
 		
 		AuthConfig auth = AuthConfig.getInstance();
+		audit = new AuditInfo(req.getRemoteHost(), param.getUser(), param.getUrl());
+		
 		if(auth.isValid(param.getUrl(), req.getRemoteHost(), param.getUser())){
-			pr = DBConnectionState.connect(param, req.getSession(true));
+			pr = DBConnectionState.connect(param, req.getSession(true), audit);
 		}else{
 			pr = new ProcessResult<String>();
 			pr.setMessage(req.getRemoteHost()+"没有权限登录此数据，请联系管理员");
@@ -111,7 +116,7 @@ public class InitActionController extends BaseMultiActionController {
 		if (pr.isSuccess()) {
 			json.element("success", true);
 			storeConnectionParam(req, resp, param);
-			log.info(req.getRemoteHost()+"/"+param.getUser()+"/"+param.getUrl()+" login successfully");
+			//log.info(audit.toString()+" login successfully");
 		} else {
 			json.element("success", false);
 			json.element("msg", pr.getMessage());
@@ -133,7 +138,7 @@ public class InitActionController extends BaseMultiActionController {
 
 		JSONObject json = new JSONObject();
 		json.element("success", true);
-		log.info(req.getRemoteHost()+" logout successfully");
+		//log.info(audit.toString()+" logout successfully");
 		sendJSON(resp, json.toString());
 	}
 

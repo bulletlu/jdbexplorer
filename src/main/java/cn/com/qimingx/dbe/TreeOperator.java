@@ -73,7 +73,8 @@ public class TreeOperator {
 			return pr;
 		}
 		// make sql
-		String sql = "drop " + type + " " + node.getElementName();
+		String schema = node.getSchema();
+		String sql = "drop " + type + " " + schema + "." + node.getElementName();
 		log.debug("drop.sql:" + sql);
 
 		// get service Object.

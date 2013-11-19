@@ -129,6 +129,7 @@ DBE.SQLQueryPanel = function(config) {
 	this.sqlEditor = sqlEditor;
 	this.actions = actions;
 };
+
 Ext.extend(DBE.SQLQueryPanel, Ext.Panel, {
 	/**
 	 * 初始化 查询面板，包括设置sql，以及执行查询..
@@ -166,7 +167,11 @@ Ext.extend(DBE.SQLQueryPanel, Ext.Panel, {
 			this.queryGridPanel.setActiveTab(0);
 		} else {
 			//alert("请输入SQL语句~~");
-			Ext.MessageBox.alert('提示','请输入SQL语句');
+			//Ext.MessageBox.alert('提示','请输入SQL语句');
+			Ext.Msg.info({
+				message : 'Load Grid Data 失败',
+				alignType : 'tl-tl?'
+			});
 		}
 		//alert('wait');
 		if (hasInitSQL) {
@@ -193,7 +198,6 @@ Ext.extend(DBE.SQLQueryPanel, Ext.Panel, {
 	 */
 	openSQLFile : function(data) {
 		this.sqlEditor.setSQLText(data);
-
 	}
 
 });

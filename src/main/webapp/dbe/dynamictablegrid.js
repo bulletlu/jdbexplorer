@@ -26,7 +26,7 @@ DBE.DynamicTableGrid = function(config) {
 	if (!tableinfo.readOnly) {
 		// 表格是可修改的，添加必要的功能和事件
 		var actions = new DBE.DynamicTableGridActions(this, tableinfo);
-		this.insertAction(0, "remove", actions.remove);
+		//this.insertAction(0, "remove", actions.remove);
 
 		// 添加事件-- table数据被修改后
 		this.on('afteredit', function(object) {

@@ -41,16 +41,16 @@ DBE.SQLQueryPanelActions = function(queryPanel) {
 		iconCls : 'openfile',
 		handler : function() {
 			Ext.ux.SwfUploader.upload({
-					upload_url : '../dbeSQLQueryAction/openSqlFile.do',
-					file_types : {
-						type : '*.sql',
-						desc : '所有文件'
-					},
-					upload_success_handler:function(file,data){
-					//alert("服务器端返回数据：" + data);
-					queryPanel.openSQLFile(data);
-					}
-				});
+				upload_url : '../dbeSQLQueryAction/openSqlFile.do',
+				file_types : {
+					type : '*.sql',
+					desc : '所有文件'
+				},
+				upload_success_handler:function(file,data){
+				//alert("服务器端返回数据：" + data);
+				queryPanel.openSQLFile(data);
+				}
+			});
 		}
 	});
 

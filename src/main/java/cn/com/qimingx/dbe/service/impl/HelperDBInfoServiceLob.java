@@ -18,6 +18,7 @@ import org.springframework.jdbc.core.support.AbstractLobCreatingPreparedStatemen
 import org.springframework.jdbc.support.lob.LobCreator;
 
 import cn.com.qimingx.core.ProcessResult;
+import cn.com.qimingx.dbe.AuditInfo;
 import cn.com.qimingx.dbe.LobObject;
 import cn.com.qimingx.dbe.action.bean.PkColumnObject;
 import cn.com.qimingx.dbe.service.WorkDirectory;
@@ -30,11 +31,13 @@ import cn.com.qimingx.dbe.service.WorkDirectory;
 class HelperDBInfoServiceLob {
 	private Log log;
 	private AbstractDBInfoService service;
+	private AuditInfo audit;
 
 	// 构建器
-	public HelperDBInfoServiceLob(AbstractDBInfoService service, Log log) {
+	public HelperDBInfoServiceLob(AbstractDBInfoService service, AuditInfo audit, Log log) {
 		this.service = service;
 		this.log = log;
+		this.audit = audit;
 	}
 
 	// 读取LOB类型的字段内容
@@ -52,6 +55,7 @@ class HelperDBInfoServiceLob {
 		String sql = "select " + fieldName + " from " + table;
 		sql += " where (" + where + ")";
 		log.debug("readLob.sql:" + sql);
+		log.info(audit.toString()+" "+sql);
 
 		LobStreamingResultSetExtractor extractor;
 		extractor = new LobStreamingResultSetExtractor(service.lobHandler, work);
@@ -82,6 +86,7 @@ class HelperDBInfoServiceLob {
 		String sql = "update " + table + " SET " + fieldName;
 		sql += "=? where (" + where + ")";
 		log.debug("updateCLob.sql:" + sql);
+		log.info(audit.toString()+" "+sql);
 
 		InputStream input = null;
 		try {
@@ -129,6 +134,7 @@ class HelperDBInfoServiceLob {
 		String sql = "update " + table + " SET " + field;
 		sql += "=? where (" + where + ")";
 		log.debug("updateCLob.sql:" + sql);
+		log.info(audit.toString()+" "+sql);
 
 		try {
 			PreparedStatementCallback callback;

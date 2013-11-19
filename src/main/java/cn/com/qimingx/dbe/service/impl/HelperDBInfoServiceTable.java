@@ -14,6 +14,7 @@ import org.apache.commons.logging.Log;
 import org.springframework.dao.DataAccessException;
 
 import cn.com.qimingx.core.ProcessResult;
+import cn.com.qimingx.dbe.AuditInfo;
 import cn.com.qimingx.dbe.TableColumnInfo;
 import cn.com.qimingx.dbe.TableDataInfo;
 import cn.com.qimingx.dbe.TableInfo;
@@ -30,11 +31,13 @@ import cn.com.qimingx.utils.SQLUtils;
 class HelperDBInfoServiceTable {
 	private Log log;
 	private AbstractDBInfoService service;
+	private AuditInfo audit;
 
 	// 构建器
-	public HelperDBInfoServiceTable(AbstractDBInfoService service, Log log) {
+	public HelperDBInfoServiceTable(AbstractDBInfoService service, AuditInfo audit, Log log) {
 		this.service = service;
 		this.log = log;
+		this.audit = audit;
 	}
 
 	// 执行更新 sql 语句
@@ -43,6 +46,7 @@ class HelperDBInfoServiceTable {
 		ProcessResult<String> pr = new ProcessResult<String>();
 		try {
 			int updateRows = service.namedJdbcTemplate.update(sql, params);
+			log.info(audit.toString()+" "+sql);
 			pr.setSuccess(true);
 			pr.setMessage("成功更新 " + updateRows + " 条记录。");
 			return pr;
@@ -163,7 +167,9 @@ class HelperDBInfoServiceTable {
 
 			// 读取数据
 			log.debug("load data by sql:" + sql);
+			log.info(audit.toString()+" "+sql);
 			ResultSet rs = stat.executeQuery(sql);
+			
 			// 如果需要 进行游标定位
 			if (!service.supportLimit() && start > 1) {
 				// 不支持分页SQL的情况下 手动移动指针
@@ -196,6 +202,7 @@ class HelperDBInfoServiceTable {
 		} catch (SQLException e) {
 			log.error("readTableInfo出错：" + e.getMessage());
 			pr.setMessage(e.getMessage());
+			e.printStackTrace();
 			return pr;
 		}
 	}

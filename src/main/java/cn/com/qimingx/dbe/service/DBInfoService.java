@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import cn.com.qimingx.core.ProcessResult;
+import cn.com.qimingx.dbe.AuditInfo;
 import cn.com.qimingx.dbe.FieldDataType;
 import cn.com.qimingx.dbe.LobObject;
 import cn.com.qimingx.dbe.TableColumnInfo;
@@ -21,6 +22,8 @@ import cn.com.qimingx.dbe.action.bean.PkColumnObject;
 public interface DBInfoService {
 	// 设置数据库链接对象
 	void setDBConnection(Connection conn);
+	
+	void setAudit(AuditInfo audit);
 
 	// 获取数据库链接对象
 	Connection getDBConnection();

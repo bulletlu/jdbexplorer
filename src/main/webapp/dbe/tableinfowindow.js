@@ -21,10 +21,18 @@ DBE.TableInfoWindow = function(config) {
 				if (node.reload!=undefined) {
 					node.reload();
 				}
-				alert("[" + tableName + "] 表创建成功~~.");
+				//alert("[" + tableName + "] 表创建成功~~.");				
+				Ext.Msg.info({
+					message : "[" + tableName + "] 表创建成功",
+					alignType : 'tl-tl?'
+				});
 				winInfo.close();
 			} else {
-				alert("[" + tableName + "] 表创建失败:" + msg);
+				//alert("[" + tableName + "] 表创建失败:" + msg);
+				Ext.Msg.info({
+					message : "[" + tableName + "] 表创建失败:" + msg,
+					alignType : 'tl-tl?'
+				});
 			}
 		});
 	};
@@ -53,6 +61,7 @@ DBE.TableInfoWindow = function(config) {
 		items : tableInfoPanel
 	// html:'window'
 	};
+	var obj = this;
 	if (!config.readOnly) {
 		cfg.buttons = [{
 			text : '确认',
@@ -69,15 +78,23 @@ DBE.TableInfoWindow = function(config) {
 			scope : this,
 			handler : function() {
 				if (config.isCreate) {
-					if (confirm('您确认要放弃本次创建吗~?')) {
-						this.close();
-					}
+					Ext.MessageBox.confirm('提示','您确认要放弃本次创建吗~?',function(btn){
+						if(btn == 'yes'){
+							obj.close();
+						}
+					});
 				} else {
 					// alert("检查表表结构是否有变动..~");
 					if (tableInfoPanel.columnPanel.checkChanges()) {
-						if (!confirm('您确认要放弃表结构修改吗?')) {
+						/*if (!confirm('您确认要放弃表结构修改吗?')) {
 							return;
 						}
+						*/
+						Ext.MessageBox.confirm('提示','您确认要放弃本次创建吗~?',function(btn){
+							if(btn == 'yes'){
+								obj.close();
+							}
+						});
 					}
 					this.close();
 				}

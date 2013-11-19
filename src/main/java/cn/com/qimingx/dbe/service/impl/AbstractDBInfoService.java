@@ -18,6 +18,7 @@ import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 import org.springframework.jdbc.support.lob.DefaultLobHandler;
 
 import cn.com.qimingx.core.ProcessResult;
+import cn.com.qimingx.dbe.AuditInfo;
 import cn.com.qimingx.dbe.FieldDataType;
 import cn.com.qimingx.dbe.LobObject;
 import cn.com.qimingx.dbe.TableColumnInfo;
@@ -57,6 +58,9 @@ public abstract class AbstractDBInfoService implements DBInfoService {
 	protected HelperDBInfoServiceBase baseHelper;
 	protected HelperDBInfoServiceTable tableHelper;
 	protected HelperDBInfoServiceLob lobHelper;
+	
+	//
+	protected AuditInfo audit;
 
 	// 设置db connection
 	public void setDBConnection(Connection conn) {
@@ -77,14 +81,18 @@ public abstract class AbstractDBInfoService implements DBInfoService {
 		}
 
 		// 构建助手类
-		baseHelper = new HelperDBInfoServiceBase(this, log);
-		tableHelper = new HelperDBInfoServiceTable(this, log);
-		lobHelper = new HelperDBInfoServiceLob(this, log);
+		baseHelper = new HelperDBInfoServiceBase(this,log);
+		tableHelper = new HelperDBInfoServiceTable(this,audit,log);
+		lobHelper = new HelperDBInfoServiceLob(this, audit, log);
 	}
 
 	// 取得当前数据库链接对象
 	public Connection getDBConnection() {
 		return this.conn;
+	}
+
+	public void setAudit(AuditInfo audit) {
+		this.audit = audit;
 	}
 
 	// 取得数据库名称

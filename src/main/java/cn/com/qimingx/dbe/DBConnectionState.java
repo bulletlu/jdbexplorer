@@ -47,13 +47,17 @@ public class DBConnectionState implements Serializable {
 
 	// service
 	private transient DBInfoService service;
+	
+	
+	private AuditInfo audit;
 
 	/**
 	 * 隐藏构建器
 	 */
-	private DBConnectionState(Connection conn, DBTypeInfo dbtype) {
+	private DBConnectionState(Connection conn, DBTypeInfo dbtype, AuditInfo audit) {
 		dbConnection = conn;
 		this.dbType = dbtype;
+		this.audit = audit;
 	}
 
 	/**
@@ -81,7 +85,7 @@ public class DBConnectionState implements Serializable {
 
 	// connect to DB...
 	public static ProcessResult<String> connect(ConnectParamBean param,
-			HttpSession sess) {
+			HttpSession sess, AuditInfo audit) {
 		// get typeinfo.
 		String typeName = param.getDbtype();
 		DBTypeInfo type = DBEConfig.getInstance().getDBTypeInfo(typeName);
@@ -110,9 +114,9 @@ public class DBConnectionState implements Serializable {
 			String user = param.getUser();
 			String passwd = param.getPassword();
 			Connection conn = DriverManager.getConnection(url, user, passwd);
-
+			log.info(audit.toString()+" login successfully");
 			// 
-			DBConnectionState dbcs = new DBConnectionState(conn, type);
+			DBConnectionState dbcs = new DBConnectionState(conn, type, audit);
 			sess.setAttribute(KEY_CURRENT_STATE, dbcs);
 
 			pr.setSuccess(true);
@@ -134,6 +138,7 @@ public class DBConnectionState implements Serializable {
 			try {
 				if (!dbConnection.isClosed()) {
 					dbConnection.close();
+					log.info(audit.toString()+" logout successfully");
 				}
 			} catch (SQLException e) {
 				log.error("Close DB Connect Error：" + e.getMessage());
@@ -195,6 +200,7 @@ public class DBConnectionState implements Serializable {
 			} else {
 				service = new DefaultDBInfoService();
 			}
+			service.setAudit(audit);
 			service.setDBConnection(dbConnection);
 			log.debug("use " + service.getClass().getName() + " instance");
 		}

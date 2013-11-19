@@ -35,8 +35,7 @@ import cn.com.qimingx.spring.UploadFile;
 @Controller("dbeSQLQueryAction")
 public class DbeSQLQueryActionController extends AbstractDbeActionController {
 	// logger
-	private static final Log log = LogFactory
-			.getLog(DbeSQLQueryActionController.class);
+	private static final Log log = LogFactory.getLog(DbeSQLQueryActionController.class);
 
 	//
 	private SQLQueryOperator sqlQueryOperator;
@@ -96,7 +95,7 @@ public class DbeSQLQueryActionController extends AbstractDbeActionController {
 			}else{
 				sendJSON(resp, pr.getData().toString());
 			}
-			log.info(req.getRemoteHost()+"/"+param.getType()+"/"+param.getName());
+			//log.info(req.getRemoteHost()+"/"+param.getType()+"/"+param.getName());
 		} catch (Exception e) {
 			log.debug("execSqlFile.error:" + e.getMessage());
 			sendErrorJSON(resp, e.getMessage());
@@ -123,7 +122,8 @@ public class DbeSQLQueryActionController extends AbstractDbeActionController {
 		//
 		DBInfoService service = prDBCS.getData().getDBInfoService();
 		ProcessResult<JSON> pr = sqlQueryOperator.execute(service, param);
-		log.info(req.getRemoteHost()+"/"+param.getSql());
+		
+		//log.info(req.getRemoteHost()+"/"+param.getSql());
 		// return
 		if (pr.isSuccess()) {
 			JSON json = pr.getData();

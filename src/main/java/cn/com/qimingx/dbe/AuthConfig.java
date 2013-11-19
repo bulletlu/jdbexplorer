@@ -8,6 +8,10 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+/**
+ * @author lunianping
+ *
+ */
 public class AuthConfig {
 	private static final Log log = LogFactory.getLog(AuthConfig.class.getName());
 	
@@ -71,6 +75,14 @@ public class AuthConfig {
 			}
 		}
 		return false;
+	}
+	
+	/**
+	 * @param loginInfo
+	 * @return
+	 */
+	public boolean isValid(AuditInfo loginInfo){
+		return this.isValid(loginInfo.getUrl(), loginInfo.getClient(), loginInfo.getUser());
 	}
 	
 	

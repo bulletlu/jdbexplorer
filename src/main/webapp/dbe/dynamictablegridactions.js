@@ -40,7 +40,9 @@ DBE.DynamicTableGridActions = function(dtgrid, tableinfo) {
 		handler : function() {
 			var selects = dtgrid.getSelectionModel().getSelections();
 			if (selects && selects.length > 0) {
-				if (confirm('您确认要删除选择的记录~?')) {
+				Ext.MessageBox.confirm('提醒','您确认要删除选择的记录?',function(btn){
+				if(btn=='yes'){
+				//if (confirm('您确认要删除选择的记录~?')) {
 					// 生成主键信息
 					var pkName = tableinfo.pkColumnName;
 					var pkList = pkName.split(",");
@@ -70,11 +72,12 @@ DBE.DynamicTableGridActions = function(dtgrid, tableinfo) {
 					};
 					optRequest('../dbeGridAction/remove.do', data, refreshStore);
 				}
-			} else {
-				alert('请选择要删除的记录~!');
-			}
+				});
+			}			
 		}
 	});
+	
+	
 	/**
 	 * 表格数据修改后 提交保存
 	 */

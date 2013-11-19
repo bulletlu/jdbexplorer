@@ -70,7 +70,11 @@ DBE.DynamicGrid = function(config) {
 			},
 			loadexception : function() {
 				// load 数据失败..
-				alert("Load Grid Data 失败~~~!");
+				//alert("Load Grid Data 失败~~~!");
+				Ext.Msg.info({
+					message : 'Load Grid Data 失败',
+					alignType : 'tl-tl?'
+				});
 			},
 			metachange : {
 				scope : this,
