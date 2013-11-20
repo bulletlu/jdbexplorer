@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>  
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">  
 <properties>  
-    <comment>系统配置</comment>  
     <entry  
         key="jdbc:oracle:thin:@172.30.3.26:1521:newdb">172.31.8.*(whzro,cninfo);172.31.14.*(datro)</entry>  
     <entry  
-        key="jdbc:mysql://172.26.2.121:3306/test">172.31.8.*(admin);172.31.8.*(datro)</entry>  
+        key="jdbc:oracle:thin:@172.30.3.99:1521:newwork">172.31.8.*(whzro);172.31.14.*(datro)</entry>  
+    <entry 
+    	key="jdbc:mysql://192.168.6.117:3306/irmdb">172.31.8.*(whzro);172.31.8.*(datro)</entry>
+    <entry 
+    	key="jdbc:mysql://172.26.2.121:3306/test">172.31.8.*(admin);172.31.8.*(datro)</entry> 
+     
 </properties> 

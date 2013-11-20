@@ -28,12 +28,14 @@ public class DbeActionController extends AbstractDbeActionController {
 
 		File file = workDirectory(req).getFileByName(target);
 		if (file != null) {
-			String name = file.getName();
-			int idx = name.indexOf(".") + 1;
-			if (idx > 0) {
-				name = name.substring(idx);
-			}
-			download(resp, name, file);
+//			String name = file.getName();
+//			int idx = name.indexOf(".") + 1;
+//			if (idx > 0) {
+//				name = name.substring(idx);
+//			}
+//			System.out.println(name);
+//			System.out.println(file.getPath());
+			download(resp, file.getName(), file);
 		} else {
 			sendError(resp, 500, "文件无法下载:" + target);
 		}

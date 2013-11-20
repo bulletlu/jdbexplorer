@@ -29,6 +29,7 @@ import cn.com.qimingx.json.MyJSONUtils;
 @Service("sqlQueryOperator")
 public class SQLQueryOperator {
 	private static final Log log = LogFactory.getLog(SQLQueryOperator.class);
+	
 	// 执行sql语句
 	public ProcessResult<JSON> execute(DBInfoService service,
 			GridQueryLoadBean param) {
@@ -47,7 +48,7 @@ public class SQLQueryOperator {
 		}
 	}
 
-	// 执行 sql
+	// 执行 DML、DDL类sql
 	private ProcessResult<JSON> executeUpdate(String sql,
 			DBInfoService service, GridQueryLoadBean param) {
 		ProcessResult<String> pr = service.executeUpdate(sql, null);
@@ -77,7 +78,7 @@ public class SQLQueryOperator {
 		return ppr;
 	}
 
-	// 执行sql
+	// 执行查询sql
 	private ProcessResult<JSON> executeQuery(String sql, DBInfoService service,
 			GridQueryLoadBean param) {
 		int start = param.getStart();

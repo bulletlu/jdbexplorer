@@ -36,8 +36,7 @@ import cn.com.qimingx.utils.sql.SQLExec;
  */
 public abstract class AbstractDBInfoService implements DBInfoService {
 	// Logger
-	private static final Log log = LogFactory
-			.getLog(AbstractDBInfoService.class);
+	private static final Log log = LogFactory.getLog(AbstractDBInfoService.class);
 
 	// db connection
 	protected Connection conn;
@@ -59,7 +58,7 @@ public abstract class AbstractDBInfoService implements DBInfoService {
 	protected HelperDBInfoServiceTable tableHelper;
 	protected HelperDBInfoServiceLob lobHelper;
 	
-	//
+	//审计信息
 	protected AuditInfo audit;
 
 	// 设置db connection

@@ -83,7 +83,7 @@ public class TableInfo {
 		}
 
 		// 取得临时文件
-		File file = wd.newFile(fileType, ".tmp");
+		File file = wd.newFile("querygrid", fileType.toLowerCase());
 		OutputStream stream = null;
 		try {
 			stream = new FileOutputStream(file);
@@ -228,7 +228,7 @@ public class TableInfo {
 		writer.write("<html><head>");
 		writer.write("<meta http-equiv='Content-Type' "
 				+ "content='text/html;charset=UTF-8'/>");
-		writer.write("</head><body><table border='1' width='95%'>");
+		writer.write("</head><body><table border='1' width='95%' cellspacing='0'>");
 
 		String header = "";
 		for (TableColumnInfo column : getColumns()) {
@@ -241,7 +241,7 @@ public class TableInfo {
 			String row = "";
 			for (TableColumnInfo column : getColumns()) {
 				Object value = map.get(column.getName());
-				String col = value == null ? "<NULL>" : value.toString();
+				String col = (value == null || value.toString().trim().length()==0) ? "&nbsp;" : value.toString();
 				row += "<td>" + col + "</td>";
 			}
 			writer.write("<tr>" + row + "</tr>");
