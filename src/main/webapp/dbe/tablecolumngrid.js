@@ -3,7 +3,7 @@ DBE.TableColumnGrid = function(config) {
 	// 数据类型的编辑器
 	// 列信息
 	var defValue = {
-		align : 'center',
+		align : 'left',
 		menuDisabled : true,
 		sortable : false
 	};
@@ -32,6 +32,7 @@ DBE.TableColumnGrid = function(config) {
 	var c3 = Ext.applyIf({
 		header : '长度',
 		dataIndex : 'datalength',
+		width : 20,
 		editor : new Ext.form.NumberField({
 			selectOnFocus : true
 		})
@@ -39,11 +40,12 @@ DBE.TableColumnGrid = function(config) {
 	var c4 = new Ext.ux.grid.CheckColumn(Ext.applyIf({
 		header : '是否主键',
 		dataIndex : 'ispk',
-		width : 55
+		width : 20
 	}, defValue));
 	var c5 = new Ext.ux.grid.CheckColumn(Ext.applyIf({
 		header : '允许空值',
-		dataIndex : 'cannull'
+		dataIndex : 'cannull',
+		width : 20
 	}, defValue));
 	var rn = new Ext.grid.RowNumberer();
 	var cm = new Ext.grid.ColumnModel([rn, c1, c2, c3, c4, c5]);

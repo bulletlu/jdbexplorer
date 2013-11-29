@@ -16,6 +16,8 @@ import cn.com.qimingx.core.WebParamBean;
 public class GridTableFieldInfoBean extends WebParamBean {
 	// 表名称
 	private String tablename;
+	//
+	private String schema;
 
 	// 主键信息列表
 	// private PkColumnObject pk;
@@ -68,4 +70,14 @@ public class GridTableFieldInfoBean extends WebParamBean {
 	public void setPkInfo(String pkInfo) {
 		this.pkInfo = pkInfo;
 	}
+
+	public String getSchema() {
+		return schema;
+	}
+
+	public void setSchema(String schema) {
+		this.schema = schema;
+	}
+	
+	
 }

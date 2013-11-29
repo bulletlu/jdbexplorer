@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -12,7 +13,6 @@ import cn.com.qimingx.dbe.FieldDataType;
 public class MysqlDBInfoService extends AbstractDBInfoService {
 	
 	private static final Log log = LogFactory.getLog(MysqlDBInfoService.class);
-	
 	
 
 	public String getLimitSQLString(String originalSQL) {
@@ -49,4 +49,6 @@ public class MysqlDBInfoService extends AbstractDBInfoService {
 		fdts.add(new FieldDataType("TEXT", true));
 		return fdts;
 	}
+	
+	
 }

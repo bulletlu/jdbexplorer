@@ -16,15 +16,16 @@ DBE.DynamicQueryGrid = function(config) {
 	}, this);
 
 	// 设置事件 - load后 调整grid宽度，使column fit
-	this.store.on('load', function(store, records, opt) {
-		var size = this.getSize();
-		this.setWidth(size.width - 1);
-		this.setWidth(size.width);
-	}, this);
+//	this.store.on('load', function(store, records, opt) {
+//		var size = this.getSize();
+//		this.setWidth(size.width - 1);
+//		this.setWidth(size.width);
+//	}, this);
 
 	// 公布属性
 	this.sqlText = '';
 }
+
 Ext.extend(DBE.DynamicQueryGrid, DBE.DynamicGrid, {
 	reload : function(sql) {
 		// 通过指定sql 重写load

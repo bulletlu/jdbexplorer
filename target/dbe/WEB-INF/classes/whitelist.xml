@@ -2,12 +2,31 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">  
 <properties>  
     <entry  
-        key="jdbc:oracle:thin:@172.30.3.26:1521:newdb">172.31.8.*(whzro,cninfo);172.31.14.*(datro)</entry>  
+        key="jdbc:oracle:thin:@172.30.3.26:1521:newdb">172.31.8.*(whzro,cninfo,datro);172.31.14.*(datro);172.31.6.*(p5wro);172.31.5.*(indexro)</entry>
     <entry  
-        key="jdbc:oracle:thin:@172.30.3.99:1521:newwork">172.31.8.*(whzro);172.31.14.*(datro)</entry>  
+        key="jdbc:oracle:thin:@172.30.3.7:1521:cpdb">172.31.8.*(whzro,cninfo,p5wro);172.31.6.*(p5wro);172.31.16.*(devro)</entry>
+    <entry  
+        key="jdbc:oracle:thin:@192.168.89.96:1521:jcwzdb">172.31.8.*(whzro,cninfo,p5wro);172.31.16.*(devro)</entry>
+    <entry  
+        key="jdbc:oracle:thin:@172.30.3.134:1521:newdb">172.31.8.*(whzro,cninfo,p5wro);172.31.6.*(p5wro);172.31.5.*(indexro);172.31.16.*(devro)</entry>
+    <entry  
+        key="jdbc:oracle:thin:@192.168.4.9:1521:npubssi">172.31.8.*(whzro,cninfo,datro);172.31.14.*(datro)</entry>
+    <entry  
+        key="jdbc:oracle:thin:@192.168.4.99:1521:deep">172.31.8.*(whzro,cninfo,datro);172.31.14.*(datro)</entry>
+    <entry  
+        key="jdbc:oracle:thin:@172.26.3.104:1521:deep">172.31.8.*(whzro,cninfo,datro);172.31.14.*(datro)</entry>        
+    <entry  
+        key="jdbc:oracle:thin:@172.30.3.99:1521:newwork">172.31.8.*(whzro);172.31.14.*(datro);172.31.5.*(indexro);172.31.16.*(devro)</entry>
     <entry 
-    	key="jdbc:mysql://192.168.6.117:3306/irmdb">172.31.8.*(whzro);172.31.8.*(datro)</entry>
+    	key="jdbc:mysql://172.30.3.128:3306/trs">172.31.8.*(whzro);172.31.6.*(p5wro)</entry>
     <entry 
-    	key="jdbc:mysql://172.26.2.121:3306/test">172.31.8.*(admin);172.31.8.*(datro)</entry> 
-     
-</properties> 
+    	key="jdbc:mysql://192.168.4.161:3306/smsehome">172.31.8.*(whzro);172.31.16.*(devro)</entry>
+    <entry 
+    	key="jdbc:mysql://192.168.7.137:3309/stockdata">172.31.8.*(whzro);172.31.6.*(p5wro)</entry>
+    <entry 
+    	key="jdbc:mysql://192.168.7.137:3307/weibo">172.31.8.*(whzro);172.31.6.*(p5wro)</entry>
+    <entry 
+    	key="jdbc:mysql://192.168.6.107:3306/irmdb">172.31.8.*(whzro);172.31.16.*(devro)</entry>
+    <entry 
+    	key="jdbc:mysql://172.26.2.121:3306/test">172.31.8.*(admin);172.31.8.*(datro)</entry>
+</properties>

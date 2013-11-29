@@ -41,7 +41,7 @@ class HelperDBInfoServiceLob {
 	}
 
 	// 读取LOB类型的字段内容
-	public ProcessResult<LobObject> readLob(String table,
+	public ProcessResult<LobObject> readLob(String schema, String table,
 			List<PkColumnObject> pks, String fieldName, final WorkDirectory work) {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		String where = "";
@@ -52,7 +52,7 @@ class HelperDBInfoServiceLob {
 			where += pk.getPk() + "=:" + pk.getPk();
 			paramMap.put(pk.getPk(), pk.getPkValueObject());
 		}
-		String sql = "select " + fieldName + " from " + table;
+		String sql = "select " + fieldName + " from " + schema+"."+table;
 		sql += " where (" + where + ")";
 		log.debug("readLob.sql:" + sql);
 		log.info(audit.toString()+" "+sql);
@@ -73,7 +73,7 @@ class HelperDBInfoServiceLob {
 	}
 
 	// 更新BLOB类型
-	public ProcessResult<String> updateBLob(String table,
+	public ProcessResult<String> updateBLob(String schema,String table,
 			final List<PkColumnObject> pks, String fieldName, final File file) {
 		ProcessResult<String> pr = new ProcessResult<String>(false);
 		String where = "";
@@ -83,7 +83,7 @@ class HelperDBInfoServiceLob {
 			}
 			where += pk.getPk() + "=?";
 		}
-		String sql = "update " + table + " SET " + fieldName;
+		String sql = "update " + schema+"."+table + " SET " + fieldName;
 		sql += "=? where (" + where + ")";
 		log.debug("updateCLob.sql:" + sql);
 		log.info(audit.toString()+" "+sql);
@@ -120,7 +120,7 @@ class HelperDBInfoServiceLob {
 	}
 
 	// 更新CLOB
-	public ProcessResult<String> updateCLob(String table,
+	public ProcessResult<String> updateCLob(String schema,String table,
 			final List<PkColumnObject> pks, String field, final String clob) {
 		ProcessResult<String> pr = new ProcessResult<String>(false);
 		String where = "";
@@ -131,7 +131,7 @@ class HelperDBInfoServiceLob {
 			where += pk.getPk() + "=?";
 		}
 
-		String sql = "update " + table + " SET " + field;
+		String sql = "update " + schema+"."+table + " SET " + field;
 		sql += "=? where (" + where + ")";
 		log.debug("updateCLob.sql:" + sql);
 		log.info(audit.toString()+" "+sql);

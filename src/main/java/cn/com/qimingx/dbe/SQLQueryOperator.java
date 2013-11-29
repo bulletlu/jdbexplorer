@@ -43,7 +43,7 @@ public class SQLQueryOperator {
 			}
 		} else {
 			ProcessResult<JSON> pr = new ProcessResult<JSON>();
-			pr.setMessage("sql sentence invalid~!");
+			pr.setMessage("sql sentence invalid!");
 			return pr;
 		}
 	}
@@ -79,8 +79,7 @@ public class SQLQueryOperator {
 	}
 
 	// 执行查询sql
-	private ProcessResult<JSON> executeQuery(String sql, DBInfoService service,
-			GridQueryLoadBean param) {
+	private ProcessResult<JSON> executeQuery(String sql, DBInfoService service,	GridQueryLoadBean param) {
 		int start = param.getStart();
 		int limit = param.getLimit();
 		String condition = param.getSearchCondition();

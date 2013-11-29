@@ -60,6 +60,14 @@ public abstract class AbstractDBInfoService implements DBInfoService {
 	
 	//审计信息
 	protected AuditInfo audit;
+	
+	
+	public AbstractDBInfoService(){
+		// 构建助手类
+//		baseHelper = new HelperDBInfoServiceBase(this,log);
+//		tableHelper = new HelperDBInfoServiceTable(this,audit,log);
+//		lobHelper = new HelperDBInfoServiceLob(this, audit, log);
+	}
 
 	// 设置db connection
 	public void setDBConnection(Connection conn) {
@@ -154,21 +162,21 @@ public abstract class AbstractDBInfoService implements DBInfoService {
 	}
 
 	// 读取LOB值
-	public ProcessResult<LobObject> readLob(String table,
+	public ProcessResult<LobObject> readLob(String schema,String table,
 			List<PkColumnObject> pks, String fieldName, final WorkDirectory work) {
-		return lobHelper.readLob(table, pks, fieldName, work);
+		return lobHelper.readLob(schema,table, pks, fieldName, work);
 	}
 
 	// 更新BLOB类型
-	public ProcessResult<String> updateBLob(String table,
+	public ProcessResult<String> updateBLob(String schema,String table,
 			List<PkColumnObject> pks, String fieldName, final File file) {
-		return lobHelper.updateBLob(table, pks, fieldName, file);
+		return lobHelper.updateBLob(schema,table, pks, fieldName, file);
 	}
 
 	// 更新CLOB
-	public ProcessResult<String> updateCLob(String table,
+	public ProcessResult<String> updateCLob(String schema,String table,
 			List<PkColumnObject> pks, String field, final String clob) {
-		return lobHelper.updateCLob(table, pks, field, clob);
+		return lobHelper.updateCLob(schema,table, pks, field, clob);
 	}
 
 	// 通过.sql文件来执行sql脚本

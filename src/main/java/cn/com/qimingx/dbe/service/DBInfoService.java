@@ -65,15 +65,15 @@ public interface DBInfoService {
 	ProcessResult<String> executeByFile(File file);
 
 	// 读取LOB字段
-	ProcessResult<LobObject> readLob(String table, List<PkColumnObject> pks,
+	ProcessResult<LobObject> readLob(String schema, String table, List<PkColumnObject> pks,
 			String fieldName, WorkDirectory work);
 
 	// 更新BLOB字段
-	ProcessResult<String> updateBLob(String table, List<PkColumnObject> pks,
+	ProcessResult<String> updateBLob(String schema, String table, List<PkColumnObject> pks,
 			String fieldName, File file);
 
 	// 更新CLOB字段
-	ProcessResult<String> updateCLob(String table, List<PkColumnObject> pks,
+	ProcessResult<String> updateCLob(String schema, String table, List<PkColumnObject> pks,
 			String field, final String clob);
 
 	// 数据库是否支持 可滚动的ResultSet

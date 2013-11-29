@@ -57,10 +57,9 @@ DBE.DataExportUtils = function() {
 				}]
 			}]
 		});
-		//alert('i='+i);
 		var h = Math.ceil(i/4)+1;
 		//alert('i='+i+'  h='+h);
-		formset.setHeight(h*27);
+		formset.setSize(600,h*27);
 		return formset;
 	}
 
@@ -196,6 +195,7 @@ DBE.DataExportUtils = function() {
 		});
 		fldStartPageNo.setValue(currentPageNo);
 		fldEndPageNo.setValue(currentPageNo);
+		formset.setSize(600,110);
 		return formset;
 	}
 	/**
@@ -213,7 +213,7 @@ DBE.DataExportUtils = function() {
 			anchor : '98%'
 		};
 
-		return new Ext.form.FieldSet({
+		var formset = new Ext.form.FieldSet({
 			title : '导出内容格式',
 			autoHeight : false,
 			width:600,
@@ -221,7 +221,7 @@ DBE.DataExportUtils = function() {
 			items : {
 				layout : 'column',
 				defaults : {
-					columnWidth : .25,
+					columnWidth : .20,
 					layout : 'form'
 				},
 				items : [{
@@ -229,6 +229,11 @@ DBE.DataExportUtils = function() {
 						checked : true,
 						boxLabel : '.html',
 						inputValue : 'HTML'
+					}, defaultRadioConfig)
+				}, {
+					items : Ext.applyIf({
+						boxLabel : '.xls',
+						inputValue : 'XLS'
 					}, defaultRadioConfig)
 				}, {
 					items : Ext.applyIf({
@@ -248,6 +253,8 @@ DBE.DataExportUtils = function() {
 				}]
 			}
 		});
+		formset.setSize(600,60);
+		return formset;
 	}
 
 }

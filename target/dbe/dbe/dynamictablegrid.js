@@ -36,8 +36,9 @@ DBE.DynamicTableGrid = function(config) {
 		// 添加事件-- 长类型格式的数据修改和查看..
 		this.on('celldblclick', function(grid, rowIdx, columnIdx, eventObj) {
 			var tablename = this.nodeInfo.text;
-			return actions.processLongTypeContent(grid, rowIdx, columnIdx,
-					eventObj, tablename);
+			var fields = this.nodeInfo.getPath('text').split('/');
+			var schema = fields[fields.length-3];
+			return actions.processLongTypeContent(grid, rowIdx, columnIdx, eventObj, schema, tablename);
 		});
 	}
 }

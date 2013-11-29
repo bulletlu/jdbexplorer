@@ -40,5 +40,12 @@ public class GridTableLongFieldInfoBean extends UploadFile {
 		bean.setPkInfo(pkInfo);
 	}
 	
+	public String getSchema() {
+		return bean.getSchema();
+	}
+	
+	public void setSchema(String schema) {
+		bean.setSchema(schema);
+	}
 	
 }

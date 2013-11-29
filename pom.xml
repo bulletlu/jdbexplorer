@@ -140,6 +140,16 @@
   		<version>2.5</version>
   		<scope>provided</scope>
   	</dependency>
+  	<dependency>
+  		<groupId>com.oracle</groupId>
+		<artifactId>ojdbc14</artifactId>
+		<version>10.2.0.3.0</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>5.1.21</version>
+  	</dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -156,8 +166,13 @@
 	        <configuration>
 	        	<encoding>UTF-8</encoding>
 	        </configuration>
-	      </plugin>
-		</plugins>
+	    </plugin>
+	    <plugin>
+            <groupId>org.mortbay.jetty</groupId>
+            <artifactId>maven-jetty-plugin</artifactId>
+            <version>7.1.6.v20100715</version>
+        </plugin>
+	</plugins>
   </build>
   
 </project>

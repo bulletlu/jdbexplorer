@@ -58,8 +58,7 @@ class HelperDBInfoServiceTable {
 	}
 
 	// 执行查询sql
-	public ProcessResult<TableInfo> executeQuery(String sql, int start,
-			int limit, String condition) {
+	public ProcessResult<TableInfo> executeQuery(String sql, int start,	int limit, String condition) {
 		// 读取数据
 		ProcessResult<TableInfo> prTableInfo;
 		prTableInfo = readTableInfo(sql, start, limit, condition, null);

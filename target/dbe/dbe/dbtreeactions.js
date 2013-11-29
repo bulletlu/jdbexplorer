@@ -143,7 +143,7 @@ DBE.DBTreePanelActions = function(dbtree, tabPanel) {
 	 * 打开sql查询窗口
 	 */
 	this.query = new Ext.Action({
-		text : 'SQL 查询',
+		text : 'SQL查询',
 		iconCls : 'query',
 		handler : function() {
 			var node = dbtree.getSelectNode();

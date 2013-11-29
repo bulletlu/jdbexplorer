@@ -141,7 +141,7 @@ DBE.DynamicTableGridActions = function(dtgrid, tableinfo) {
 	 * 处理长类型内容的修改与查看..
 	 */
 	this.processLongTypeContent = function(grid, rowIdx, columnIdx, eventObj,
-			table) {
+			schema,table) {
 		var cm = grid.getColumnModel();// 列模型
 		var colName = cm.getDataIndex(columnIdx);// 列名称
 		var record = grid.store.getAt(rowIdx);// 记录
@@ -175,6 +175,7 @@ DBE.DynamicTableGridActions = function(dtgrid, tableinfo) {
 			}
 			var params = {
 				tablename : table,
+				schema:schema,
 				pkInfo : Ext.encode(pks),
 				field : colName
 			}

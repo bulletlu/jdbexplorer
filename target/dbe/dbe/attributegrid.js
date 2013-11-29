@@ -23,17 +23,14 @@ DBE.AttributeWindow = function(node,config) {
 			url : '../dbeTreeAction/loadTableAttribute.do'
 		}),
 		baseParams: {
-		node : node.id,
-		path  : node.path,
-		text : node.text
+			node : node.id,
+			path  : node.path,
+			text : node.text
 		},
 		reader : new Ext.data.JsonReader(
-		    
 			{root : 'columns'}, 
-			[{name : 'columName'},
-			{name : 'dataType'},
-			{name : 'maxlength'},
-			{name : 'isNull'}])
+			[{name : 'columName'},{name : 'dataType'},{name : 'maxlength'},{name : 'isNull'}]
+		)
 	});
 
 	var _grid = new Ext.grid.GridPanel({

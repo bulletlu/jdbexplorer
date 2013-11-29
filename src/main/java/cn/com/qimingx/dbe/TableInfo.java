@@ -34,7 +34,7 @@ import com.lowagie.text.pdf.PdfWriter;
  */
 public class TableInfo {
 	// logger
-	private static final Log log = LogFactory.getLog(TableDataInfo.class);
+	private static final Log log = LogFactory.getLog(TableInfo.class);
 
 	// 表名称
 	private String tableName;
@@ -76,6 +76,7 @@ public class TableInfo {
 	// 生成指定格式的数据文件
 	public ProcessResult<File> makeDataFile(String fileType, WorkDirectory wd) {
 		ProcessResult<File> pr = new ProcessResult<File>();
+		log.debug("export file type:"+fileType);
 		// 检查类型格式
 		if (!isSupportType(fileType)) {
 			pr.setMessage("不支持的格式类型：" + fileType);
@@ -84,6 +85,7 @@ public class TableInfo {
 
 		// 取得临时文件
 		File file = wd.newFile("querygrid", fileType.toLowerCase());
+		log.debug("export file1 :"+file.getPath());
 		OutputStream stream = null;
 		try {
 			stream = new FileOutputStream(file);
@@ -93,7 +95,7 @@ public class TableInfo {
 			if (fileType.equalsIgnoreCase("CSV")) {
 				// 生成文件内容..
 				makeCSVContent(buffer);
-			} else if (fileType.equalsIgnoreCase("HTML")) {
+			} else if (fileType.equalsIgnoreCase("HTML") || fileType.equalsIgnoreCase("XLS")) {
 				// 生成HTML文件
 				makeHTMLContent(buffer);
 			} else if (fileType.equalsIgnoreCase("PDF")) {
@@ -103,7 +105,7 @@ public class TableInfo {
 				// 生成sql语句文件
 				makeSQLContent(buffer);
 			}
-
+			log.debug("export file2 :"+file.getPath());
 			pr.setSuccess(true);
 			pr.setData(file);
 		} catch (IOException e) {
@@ -267,7 +269,7 @@ public class TableInfo {
 	// 判断是否是受支持的类型
 	private boolean isSupportType(String type) {
 		type = type.toUpperCase();
-		if (type.equals("CSV") || type.equals("HTML") || type.equals("PDF")
+		if (type.equals("CSV") || type.equals("HTML") || type.equals("PDF")|| type.equals("XLS")
 				|| type.equals("SQL")) {
 			return true;
 		}

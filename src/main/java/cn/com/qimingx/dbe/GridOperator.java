@@ -102,8 +102,9 @@ public class GridOperator {
 			GridTableLongFieldInfoBean param, File file) {
 		String t = param.getTablename();// 表名称
 		String f = param.getField();// 字段名称
+		String s = param.getSchema();
 		List<PkColumnObject> pks = param.getPkList();// 主键
-		ProcessResult<String> pr = service.updateBLob(t, pks, f, file);
+		ProcessResult<String> pr = service.updateBLob(s, t, pks, f, file);
 		return pr;
 	}
 
@@ -112,8 +113,9 @@ public class GridOperator {
 			GridTableFieldInfoBean param, String clob) {
 		String t = param.getTablename();// 表名称
 		String f = param.getField();// 字段名称
+		String s = param.getSchema();
 		List<PkColumnObject> pks = param.getPkList();// 主键
-		ProcessResult<String> pr = service.updateCLob(t, pks, f, clob);
+		ProcessResult<String> pr = service.updateCLob(s, t, pks, f, clob);
 		return pr;
 	}
 
@@ -190,8 +192,9 @@ public class GridOperator {
 		// read
 		String t = param.getTablename();// 表名称
 		String f = param.getField();// 字段名称
+		String s = param.getSchema();
 		List<PkColumnObject> pks = param.getPkList();
-		ProcessResult<LobObject> lobPr = service.readLob(t, pks, f, work);
+		ProcessResult<LobObject> lobPr = service.readLob(s, t, pks, f, work);
 
 		// return
 		ProcessResult<JSON> pr = new ProcessResult<JSON>(false);
