@@ -189,14 +189,14 @@ DBE.DBTreePanelActions = function(dbtree, tabPanel) {
 	/**
 	 * copy node Name
 	 */
-	this.copy = new Ext.Action({
-		text : '复制名称',
-		iconCls : 'copy',
-		handler : function() {
-			var node = dbtree.getSelectNode();
-			DBE.copyToClipboard(node.text);
-		}
-	});
+//	this.copy = new Ext.Action({
+//		text : '复制名称',
+//		iconCls : 'copy',
+//		handler : function() {
+//			var node = dbtree.getSelectNode();
+//			DBE.copyToClipboard(node.text);
+//		}
+//	});
 
 	/**
 	 * 创建表

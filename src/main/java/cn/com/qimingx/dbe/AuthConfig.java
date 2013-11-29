@@ -62,7 +62,7 @@ public class AuthConfig {
 	public boolean isValid(String url,String clientHost,String user){
 		log.info("DBInfo:"+url+" Client:"+clientHost+" DBUser:"+user);
 		
-		String hostList = properties.getProperty(url);
+		String hostList = properties.getProperty(url.replaceAll("\\?.*$", ""));
 		if(hostList != null){
 			String[] hosts = hostList.split(";");
 			for(String host:hosts){

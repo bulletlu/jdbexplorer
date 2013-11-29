@@ -171,6 +171,30 @@
             <groupId>org.mortbay.jetty</groupId>
             <artifactId>maven-jetty-plugin</artifactId>
             <version>7.1.6.v20100715</version>
+            <configuration>
+            	<scanIntervalSeconds>10</scanIntervalSeconds>
+            	<webAppConfig>
+            		<contextPath>/dbe</contextPath>
+            	</webAppConfig>
+            </configuration>
+        </plugin>
+        <plugin>
+             <groupId>org.codehaus.cargo</groupId>
+             <artifactId>cargo-maven2-plugin</artifactId>
+             <version>1.0</version>
+             <configuration>
+             	<container>
+	            	<containerId>tomcat6.0.32</containerId>
+	            	<home>D:\Application\apache-tomcat-6.0.32</home>
+	            </container>
+	            <configuration>
+	            	<type>standalone</type>
+	            	<home>${project.build.directory}/tomcat6.0.32</home>
+	            	<properties>
+	            		<cargo.servlet.port>8080</cargo.servlet.port>
+	            	</properties>
+	            </configuration>
+             </configuration>
         </plugin>
 	</plugins>
   </build>

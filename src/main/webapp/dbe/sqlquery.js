@@ -169,7 +169,8 @@ Ext.extend(DBE.SQLQueryPanel, Ext.Panel, {
 			//alert("请输入SQL语句~~");
 			//Ext.MessageBox.alert('提示','请输入SQL语句');
 			Ext.Msg.info({
-				message : 'Load Grid Data 失败',
+				title : '提示',
+				message : '请输入SQL语句',
 				alignType : 'tl-tl?'
 			});
 		}

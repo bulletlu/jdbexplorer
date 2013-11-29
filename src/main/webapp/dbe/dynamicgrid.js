@@ -68,6 +68,7 @@ DBE.DynamicGrid = function(config) {
 					}
 				}
 			},
+			
 			loadexception : function() {
 				// load 数据失败..
 				//alert("Load Grid Data 失败~~~!");
@@ -201,9 +202,12 @@ DBE.DynamicGrid = function(config) {
 				}
 			}
 		},
-		items : [actions.copyCellToClipboard, actions.copyToClipboard,
-				actions.copyColumnToClipboard,
-				actions.copyColumnHeaderToClipboard, '-', actions.dataExport]
+		items : [
+			//actions.copyCellToClipboard, 
+			//actions.copyToClipboard,
+			//actions.copyColumnToClipboard,
+			//actions.copyColumnHeaderToClipboard, '-', 
+			actions.dataExport]
 	});
 
 	// 初始 TopBar 对象
@@ -307,16 +311,21 @@ Ext.extend(DBE.DynamicGrid, Ext.grid.EditorGridPanel, {
 						item = items.get(i + 1);
 						dom = item.getEl();
 						var html = dom.innerHTML;
-						var pageMaxNo = html.replace('页共','').replace('页','').trim();
-						//for (var x = 0; x < html.length; x++) {
-//							var xchar = html.charAt(x);
-//							
-//							pageMaxNo = new Number(xchar);
-//							if (!isNaN(pageMaxNo) && pageMaxNo > 0) {
-//								break;
-//							}
-//						}
-						result.pageTotal = new Number(pageMaxNo);
+						//var pageMaxNo = html.replace('页共','').replace('页','').trim();
+						var pageMaxNoStr = '';
+						for (var x = 0; x < html.length; x++) {
+							var xchar = html.charAt(x);
+							if(xchar.trim().length > 0){
+								var num = new Number(xchar);
+								//alert(xchar+'/'+num);
+								if (!isNaN(num) && num >=0) {
+									//break;
+									pageMaxNoStr += num;
+								}
+							}
+						}
+						//alert(pageMaxNoStr);
+						result.pageTotal = new Number(pageMaxNoStr);
 						break;
 					}
 				}

@@ -1,25 +1,25 @@
 {
 	// 系统支持的数据库类型定义
 	dbtypes : [{
-		name : 'Derby',
-		url : 'jdbc:derby://<server>/<dbname>;create=true',
-		driver : 'org.apache.derby.jdbc.ClientDriver',
-		service : 'cn.com.qimingx.dbe.service.impl.DerbyDBInfoService'	
+		name : 'MySQL',
+		url : 'jdbc:mysql://<server>/<dbname>?zeroDateTimeBehavior=convertToNull',
+		driver : 'com.mysql.jdbc.Driver',
+		service : 'cn.com.qimingx.dbe.service.impl.MysqlDBInfoService'
 	}, {
 		name : 'ORACLE10g',
 		url : 'jdbc:oracle:thin:@<server>:<dbname>',
 		driver : 'oracle.jdbc.driver.OracleDriver',
 		service : 'cn.com.qimingx.dbe.service.impl.OracleDBInfoService'
 	}, {
+		name : 'Derby',
+		url : 'jdbc:derby://<server>/<dbname>;create=true',
+		driver : 'org.apache.derby.jdbc.ClientDriver',
+		service : 'cn.com.qimingx.dbe.service.impl.DerbyDBInfoService'	
+	},  {
 		name : 'MS_SQLSERVER',
 		url : 'jdbc:sqlserver://<server>;databaseName=<dbname>',
 		driver : 'com.microsoft.sqlserver.jdbc.SQLServerDriver',
 		service : 'cn.com.qimingx.dbe.service.impl.SQLServerDBInfoService'
-	}, {
-		name : 'MySQL',
-		url : 'jdbc:mysql://<server>/<dbname>',
-		driver : 'com.mysql.jdbc.Driver',
-		service : 'cn.com.qimingx.dbe.service.impl.MysqlDBInfoService'
 	}, {
 		name : 'HSQL_Server',
 		url : 'jdbc:hsqldb:hsql://<server>/<dbname>',
